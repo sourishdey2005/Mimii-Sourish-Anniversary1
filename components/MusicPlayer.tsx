@@ -7,7 +7,7 @@ export const MusicPlayer: React.FC = () => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   // Soft instrumental piano music
-  const audioUrl = "https://res.cloudinary.com/dodhvvewu/video/upload/v1767422914/spotidownloader.com_-_Tumhi_Dekho_Naa_-_Sitar_Lofi_-_Rishab_Rikhiram_Sharma_ork1g8.mp3"; 
+  const audioUrl = "https://res.cloudinary.com/dodhvvewu/video/upload/v1767189894/Tere_Liye_Prince_128_Kbps_hs6brw.mp3"; 
 
   const togglePlay = () => {
     if (!audioRef.current) return;
