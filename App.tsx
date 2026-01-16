@@ -9,6 +9,8 @@ import { LoveNotes } from './components/LoveNotes.tsx';
 import { LoveLetter } from './components/LoveLetter.tsx';
 import { ReasonsWhy } from './components/ReasonsWhy.tsx';
 import { BucketList } from './components/BucketList.tsx';
+import { OurPromises } from './components/OurPromises.tsx';
+import { LoveTrivia } from './components/LoveTrivia.tsx';
 import { Heart, Share2 } from 'lucide-react';
 
 export default function App() {
@@ -66,8 +68,10 @@ export default function App() {
           <div ref={timelineRef} className="animate-fade-in-up">
             <Timeline />
             <ReasonsWhy />
+            <LoveTrivia />
             <LoveLetter />
             <LoveNotes />
+            <OurPromises />
             <BucketList />
             <ForeverSection 
               onForever={handleForeverClick} 
