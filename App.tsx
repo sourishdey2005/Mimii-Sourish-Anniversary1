@@ -6,6 +6,9 @@ import { ForeverSection } from './components/ForeverSection.tsx';
 import { HeartBackground } from './components/HeartBackground.tsx';
 import { MusicPlayer } from './components/MusicPlayer.tsx';
 import { LoveNotes } from './components/LoveNotes.tsx';
+import { LoveLetter } from './components/LoveLetter.tsx';
+import { ReasonsWhy } from './components/ReasonsWhy.tsx';
+import { BucketList } from './components/BucketList.tsx';
 import { Heart, Share2 } from 'lucide-react';
 
 export default function App() {
@@ -62,7 +65,10 @@ export default function App() {
         {showJourney && (
           <div ref={timelineRef} className="animate-fade-in-up">
             <Timeline />
+            <ReasonsWhy />
+            <LoveLetter />
             <LoveNotes />
+            <BucketList />
             <ForeverSection 
               onForever={handleForeverClick} 
               isCelebrated={isCelebrated} 
