@@ -28,12 +28,12 @@ export const ForeverSection: React.FC<ForeverSectionProps> = ({ onForever, isCel
         ) : (
           <div className="animate-fade-in-up space-y-8 py-12">
             <div className="relative inline-block mb-6">
-              <Stars className="absolute -top-10 -left-10 text-yellow-400 animate-spin" size={48} />
-              <Stars className="absolute -bottom-10 -right-10 text-yellow-400 animate-spin" size={48} />
+              <Stars className="absolute -top-10 -left-10 text-yellow-400 animate-spin" style={{ animationDuration: '3s' }} size={48} />
+              <Stars className="absolute -bottom-10 -right-10 text-yellow-400 animate-spin" style={{ animationDuration: '4s' }} size={48} />
               <img 
-                src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3hncGFuYjEzeHJxdjNqNTR4OXgxeHgxeHgxeHgxeHgxeHgxeHgmZXA9djFfaW50ZXJuYWxfZ2lmX2J5X2lkJmN0PWc/KztT2c4u8mYYUiCiK1/giphy.gif" 
+                src="https://res.cloudinary.com/dodhvvewu/image/upload/v1768582603/I-love-you-1-1024x1004_r0l18n.webp" 
                 alt="Love Celebration" 
-                className="rounded-3xl shadow-2xl w-full max-w-md mx-auto border-8 border-white"
+                className="rounded-3xl shadow-2xl w-full max-w-md mx-auto border-8 border-white object-cover"
               />
             </div>
             

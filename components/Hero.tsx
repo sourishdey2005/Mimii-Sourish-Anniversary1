@@ -7,27 +7,37 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ onStart }) => {
-  const [timeLeft, setTimeLeft] = useState<{ days: number, hours: number, mins: number }>({ days: 0, hours: 0, mins: 0 });
+  const [timeLeft, setTimeLeft] = useState<{ days: number, hours: number, mins: number, secs: number }>({ 
+    days: 0, 
+    hours: 0, 
+    mins: 0, 
+    secs: 0 
+  });
 
   useEffect(() => {
     const calculateCountdown = () => {
       const now = new Date();
-      let next17 = new Date(now.getFullYear(), now.getMonth(), 17);
+      // Target is the 17th of the current month
+      let targetDate = new Date(now.getFullYear(), now.getMonth(), 17, 0, 0, 0);
       
-      if (now.getDate() >= 17) {
-        next17.setMonth(next17.getMonth() + 1);
+      // If today is past the 17th, target the 17th of next month
+      if (now.getTime() >= targetDate.getTime()) {
+        targetDate = new Date(now.getFullYear(), now.getMonth() + 1, 17, 0, 0, 0);
       }
 
-      const diff = next17.getTime() - now.getTime();
+      const diff = targetDate.getTime() - now.getTime();
+      
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
       const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const mins = Math.floor((diff / 1000 / 60) % 60);
+      const mins = Math.floor((diff / (1000 * 60)) % 60);
+      const secs = Math.floor((diff / 1000) % 60);
 
-      setTimeLeft({ days, hours, mins });
+      setTimeLeft({ days, hours, mins, secs });
     };
 
     calculateCountdown();
-    const timer = setInterval(calculateCountdown, 60000);
+    // Update every second for a dynamic "real" clock feel
+    const timer = setInterval(calculateCountdown, 1000);
     return () => clearInterval(timer);
   }, []);
 
@@ -59,20 +69,26 @@ export const Hero: React.FC<HeroProps> = ({ onStart }) => {
         </div>
 
         {/* Anniversary Countdown */}
-        <div className="bg-white/40 backdrop-blur-md rounded-2xl p-6 border border-rose-100/50 shadow-sm max-w-sm mx-auto">
+        <div className="bg-white/40 backdrop-blur-md rounded-2xl p-6 border border-rose-100/50 shadow-sm max-w-md mx-auto">
           <p className="text-xs uppercase tracking-[0.2em] text-rose-400 mb-4 font-semibold">Next Monthly Celebration</p>
-          <div className="flex justify-center gap-6">
-            <div>
-              <span className="text-3xl font-elegant text-rose-700">{timeLeft.days}</span>
-              <p className="text-[10px] text-rose-400 uppercase">Days</p>
+          <div className="grid grid-cols-4 gap-4 md:gap-8 px-2">
+            <div className="flex flex-col items-center">
+              <span className="text-3xl md:text-4xl font-elegant text-rose-700 w-12">{timeLeft.days}</span>
+              <p className="text-[10px] text-rose-400 uppercase font-bold mt-1">Days</p>
             </div>
-            <div>
-              <span className="text-3xl font-elegant text-rose-700">{timeLeft.hours}</span>
-              <p className="text-[10px] text-rose-400 uppercase">Hours</p>
+            <div className="flex flex-col items-center">
+              <span className="text-3xl md:text-4xl font-elegant text-rose-700 w-12">{timeLeft.hours.toString().padStart(2, '0')}</span>
+              <p className="text-[10px] text-rose-400 uppercase font-bold mt-1">Hours</p>
             </div>
-            <div>
-              <span className="text-3xl font-elegant text-rose-700">{timeLeft.mins}</span>
-              <p className="text-[10px] text-rose-400 uppercase">Mins</p>
+            <div className="flex flex-col items-center">
+              <span className="text-3xl md:text-4xl font-elegant text-rose-700 w-12">{timeLeft.mins.toString().padStart(2, '0')}</span>
+              <p className="text-[10px] text-rose-400 uppercase font-bold mt-1">Mins</p>
+            </div>
+            <div className="flex flex-col items-center">
+              <span className="text-3xl md:text-4xl font-elegant text-rose-500 w-12 tabular-nums">
+                {timeLeft.secs.toString().padStart(2, '0')}
+              </span>
+              <p className="text-[10px] text-rose-400 uppercase font-bold mt-1">Secs</p>
             </div>
           </div>
         </div>
